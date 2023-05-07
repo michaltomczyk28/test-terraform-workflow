@@ -1,0 +1,16 @@
+name: github-actions-demo
+on: [push]
+jobs:
+  generate-python-file:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Set up terraform
+        uses: hashicorp/setup-terraform@v2
+      - name: Terraform init
+        run: terraform init
+      - name: Generate file
+        run: terraform apply -auto-approve
+      - name: Display generated file
+        run: cat generated.py
